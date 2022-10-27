@@ -12,12 +12,24 @@ You can assume that the 2nd number passed in will always be greater than the fir
 Note: This problem should account for negative number input
 */
 
+let sumOfOdds = (num1, num2) => {
+  let sum = 0;
+
+  for (let i = num1; i <= num2; i++){
+    if (i % 2 === 1){
+      sum += i;
+    } else if (i % -2 === -1){
+      sum += i;
+    }
+  }
+  return sum;
+}
 
 /* console.logs to test */
 console.log("sumOfOdds");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(sumOfOdds(-10, -5));
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 /*
@@ -27,12 +39,19 @@ For example arraySubtract([7,9],[2,6]) should return [5,3]
 You can assume the arrays that are being input are of the same length
 */
 
+let arraySubtract = (num1, num2) => {
+  let result = [];
+  for (let i = 0; i < num1.length; i++){
+    result.push(num1[i] - num2[i]);
+  }
+  return result;
+}
 
 /* console.logs to test */
 console.log("arraySubtract");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(arraySubtract([7, 9], [2, 6]));
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -43,12 +62,22 @@ Add the second string to the end of the array
 Return the modified array
 */
 
+let surroundArray = (arr, str1, str2) => {
+  let result = [];
+
+  for (let j = 0; j < arr.length; j++) {
+    result.push(arr[j]);
+  }
+  result.unshift(str1);
+  result.push(str2);
+  return result;
+}
 
 /* console.logs to test */
 console.log("surroundArray");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(surroundArray(['cat', 'eagle', 'wolf'], 'dog', 'owl'))
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -58,13 +87,23 @@ If there is nothing in the array, return an empty string ('')
 You can assume that no two strings will have the same length in the array
 */
 
+let longestString = arr => {
+  let longest = "";
 
+  for (let item of arr) {
+    if (item.length > longest.length){
+      longest = item;
+    }
+  }
+  return longest;
+}
 
 
 /* console.logs to test */
 console.log("longestString");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
+console.log(longestString(['dog', 'kevin', 'rose', 'michael', 'includes']));
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -74,12 +113,30 @@ If the letter in the original string is uppercase the letter in the output strin
 Do NOT use replaceAll or similar string methods.  If you are unsure what that means, ask before you use a string method!  (toUpperCase() and toLowerCase() should be all you need if anything)
 */
 
+let sToR = (str) => {
+  let newStr = '';
+
+  for (let i = 0; i < str.length; i++){
+    if(str[i] === 's'){
+      newStr += 'r';
+    } else if(str[i] === 'r'){
+      newStr += 's';
+    }else if(str[i] === 'S'){
+      newStr += 'R';
+    }else if(str[i] === 'R'){
+      newStr += 'S';
+    } else {
+      newStr += str[i];
+    }
+  }
+  return newStr;
+}
 
 /* console.logs to test */
 console.log("sToR");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(sToR('Start races, stream rose'))
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -88,12 +145,18 @@ Write a function divisibleBy4And7 that takes in a number and returns true if it 
 If it is not, return false.
 */
 
+let divisibleBy4And7 = num => {
+  if (num % 4 === 0 && num % 7 === 0){
+    return true;
+  }
+  return false;
+}
 
 /* console.logs to test */
 console.log("divisibleBy4And7");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(divisibleBy4And7(24))
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -103,12 +166,20 @@ return true if the string contains both an exclamation point (!) AND a question 
 Return false if otherwise
 */
 
+let exclamationAndQuestion = str => {
+  for (let i = 0; i < str.length; i++) {
+    if (str.includes('!') && str.includes('?')) {
+      return true;
+    }
+  }
+  return false;
+}
 
 /* console.logs to test */
 console.log("exclamationAndQuestion");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(exclamationAndQuestion('NO WAY?'));
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -118,12 +189,29 @@ No need to add the count of A and B together.  Again, we want an array with the 
 Your function should account for both cases (upper and lower) of each letter.
 */
 
+let countAB = str => {
+  let countA = 0;
+  let countB = 0;
+  let ab = [];
+
+  for (let i = 0; i < str.length; i++){
+    if (str[i] === 'a' || str[i] === 'A'){
+      countA++;
+    } 
+    else if (str[i] === 'b' || str[i] === 'B'){
+       countB++;
+    }
+}
+ab.unshift(countA++);
+ab.push(countB++);
+return ab;
+}
 
 /* console.logs to test */
 console.log("countAB");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(countAB('A large bat and bar beast'))
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 /*
@@ -131,11 +219,21 @@ Write a function called createCharacter() that creates a Character object and re
 A Character object should consist of a name (string), an attack stat (number), and a defense stat (number)
 */
 
+let createCharacter = (name, atk, def) => {
+  let character = {}
+
+  character['name'] = name;
+  character['atk'] = atk;
+  character['def'] = def;
+
+  return character;
+}
+
 /* console.logs to test */
 console.log("createCharacter");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
-
+console.log(createCharacter('Kevin', 120, 120))
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
 
@@ -144,13 +242,33 @@ Write a function called pairUp() that takes in 2 Character objects (an object wi
 For each Character, add the following properties: pairedUp (boolean) and set it equal to true as well as pairPartner (string) 
 whose value is the name of the other opposite Character.  Finally, increase the atk of the first Character passed in by half 
 the atk of the second Character passed in.  
-
 */
 
+// let pairUp = (character1, character2) => {
+//   character1[pairUp] = pairUp;
+//   character2[pairUp] = pairUp;
+//   return character1, character2;
+
+// }
+
 /* console.logs to test */
-console.log("pairUp");
+// console.log("pairUp");
 console.log("////////////////////////////////////////////////////////////////////////////\n");
 //Add console.logs here to test!  Feel free to format this section however you like
+
+// let character1 = {
+//   name: 'Noah',
+//   atk: 95,
+//   def: 80
+// };
+
+// let character2 = {
+//   name: 'Mio',
+//   atk: 80,
+//   def: 100
+// };
+
+// console.log(pairUp());
 
 console.log("\n////////////////////////////////////////////////////////////////////////////\n");
 
